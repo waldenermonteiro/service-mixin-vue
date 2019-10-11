@@ -1,4 +1,4 @@
-const ResponseService = (obj, type, description) => {
+const responseService = (obj, type, description) => {
   let response = JSON.parse(JSON.stringify(obj)).response
   return !navigator.onLine ? new Error('Sem acesso à internet, por favor, tente mais tarde') : (!response ? new Error('Servidor indisponivel, tente mais tarde') : verifyStatusResponse(response, type, description))
 }
@@ -32,5 +32,5 @@ const verifyTypeAction = (action, description) => {
 }
 
 export {
-  ResponseService
+  responseService
 }

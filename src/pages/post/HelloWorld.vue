@@ -19,13 +19,13 @@
 
 <script>
 import { mapState } from "vuex";
-import crud from "@/mixins/crud.mixin";
+import base from "@/mixins/base.mixin";
 export default {
   name: "HelloWorld",
-  mixins: [crud],
+  mixins: [base],
   data: () => ({}),
   mounted() {
-    this.list("Post/list");
+    this.list({ urlDispatch: "Post/list" });
   },
   computed: {
     ...mapState("Post", ["posts"])
