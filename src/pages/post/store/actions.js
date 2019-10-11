@@ -1,14 +1,8 @@
-import PostServiceClass from '../services/PostService'
-const PostService = new PostServiceClass()
+import PostService from '../services/PostService'
 const list = async ({ commit }) => {
-    try {
-        const response = await PostService.list()
-        commit('LIST', response.data)
-    } catch (errors) {
-        throw errors
-    }
+    const response = await PostService.list()
+    commit('LIST', response.data)
 }
-
 export default {
     list
 }
