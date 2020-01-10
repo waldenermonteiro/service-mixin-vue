@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Entendendo a arquitetura service-mixin
 
 Para entender a arquitetura service-mixin, é necessário ter em mente como funciona o padrão repository. 
@@ -217,3 +218,9 @@ export default new PostService()
 ``` 
 O base é importado, e através do extends,  é herdado para que todos os métodos fiquem disponíveis para o PostService.Com o super, passamos para o construtor do Base o endpoint da API, que no caso é /posts, e exportamos a classe já instanciada.
 
+=======
+# service-mixin-vue
+```
+npm run serve
+```
+>>>>>>> 14fb835e19e6764372875222341ae64da2913c4a
