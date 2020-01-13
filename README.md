@@ -47,6 +47,7 @@ No diretório http-service, existe um arquivo chamado Http.js, onde nele é feit
 No diretório services, existem dois arquivos, Base.js e ResponseService.js.
 
 No arquivo Base.js, é onde é feita toda a abstração dos métodos que serão mais utilizados na aplicação, como por exemplo, o métodos de CRUD.
+##### Base.js
 ```js
 // services/Base.js
 import { http } from '@/http-utils/Http'
@@ -104,13 +105,14 @@ export default class Base {
 
 ```
 Aqui temos as importações do Http e do Response Service( que veremos mais pra frente), onde o http disponibiliza os métodos básicos para acesso as requisições HTTP (get, post, put, delete, etc.) e o ResponseService controla a resposta da requisição, de acordo como status retornado pela mesma.
-
+##### Base.js
 ```js
 // services/Base.js
 import { http } from '@/http-utils/Http'
 import { ResponseService } from './ResponseService'
 ``` 
 No construtor do Base, é passado como parâmetro o endereço do endpoint da API, sendo assim, é possível criar um atributo atribuindo como valor o parâmetro, permitindo ser disponibilizado para qualquer serviço que herdar a classe Base e para os métodos criados na classe. É utilizada a mesma ideia de disponibilização de atributos com as instâncias de http e ResponseService
+##### Base.js
 ```js
 // services/Base.js
   constructor (api) {
@@ -120,6 +122,7 @@ No construtor do Base, é passado como parâmetro o endereço do endpoint da API
   }
 ```
 No método list por exemplo, que tem como objetivo listar todas as informações de um determinado domínio, é utilizado o atributo this.api como parâmetro da requisição get, caso seja sucesso a resposta será retornada, caso ocorra algum problema, o atributo erro é passado como parâmetro para o ReponseService, e a string 'list' como segundo parâmetro, que serve para identificar qual a finalidade do método executado.
+##### Base.js
 ```js
 // services/Base.js
  list = async () => {
@@ -133,6 +136,7 @@ No método list por exemplo, que tem como objetivo listar todas as informações
 ```
 #### Diretório store
 Possui um arquivo index.js, que é responsavel pela injeção do vuex no vue, além de permitir a configuração de quais modulos serão utilizados na aplicação.
+##### index.js
 ```js
 // store/index.js
 import Vue from 'vue'
@@ -177,6 +181,7 @@ async list(params) {
 É notável uma semelhança com o Base em services, mas neste caso aqui, o método list recebe um objeto como paramêtro e este objeto possui várias propriedades responsáveis em determinar como o método irá se comportar. A propriedade mais importante é a urlDispatch, ela é passada no this.$store.dispatch para acionar uma action específica.
 
 Outra propriedade de suma importância é o callback, através dela é executado um método caso a action ( que no decorrer da explicação, será mostrado que a action utiliza o serviço do módulo.) ocorra com sucesso. Caso ocora um erro, o parâmetro errors é passado para o método de notificações do mixin, e então apresentado na tela um ou mais erros de acordo com objeto ou array retornado pela requisição.
+##### base.mixin.js
 ```js
 // mixins/base.mixin.js
 this.setNotifySuccess(params.messages)
@@ -184,8 +189,9 @@ this.setNotifySuccess(params.messages)
 No método createOrUpdate, é utilizado a terceira propriedade possível, a messages. Através das messages, pode-se chamar outro método do mixin de notificações, o setNotifySuccess, que é utilizado para mensagens de sucesso. 
 
 No entanto, é possível criar quantas propriedades for necessário, a arquitetura não se restringe as três apresentadas, uma propriedade que, até está comentada como uma idéia, é o próprio loading no momento de carregamento das requisições.
-##### notify-message.mixin,js
+
 O segundo arquivo do diretório mixins é o notify-messages.mixin.js, responsável por disponibilizar métodos de apresentação de mensages.
+##### notify-message.mixin.js
 ```js
 // mixins/notify-message.mixin.js
 export default {
@@ -226,8 +232,8 @@ Diferente do que normalmente é utilizado, tudo relacionado ao módulo será cri
 
 #### Diretório services
 No diretório services, é criado o service específico de um módulo.
-##### PostService.mixin,js
 O PostService é um exemplo de criação de um service específico de um módulo.
+##### PostService.mixin.js
 ```js
 // pages/post/services/PostService.js
 import Base from '@/services/Base'
@@ -243,7 +249,7 @@ O base é importado, e através do extends,  é herdado para que todos os métod
 #### Diretório store
 
 Na store é onde encontra-se todos os arquivos necessários referentes ao vuex (actions,mutations,state e getters). Será apresentado aqui somente o arquivo actions.
-##### actions,js
+##### actions.js
 ```js
 // pages/post/store/actions.js
 import PostService from '../services/PostService'
@@ -262,6 +268,7 @@ Caso retorne com sucesso, a resposta é passada para uma mutation que fará o tr
 Pelo fato de ser o base.mixin que irá chamar a action, caso o método da mesma retorne um erro, o Base service captura o erro através do ResponseService e o base mixin apresenta um ou mais erros através do mixin de notificações.
 
 ### Exemplo de uso
+##### HelloWorld.vue
 ```js
 // pages/post/HelloWorld.vue
 import { mapState } from "vuex";
