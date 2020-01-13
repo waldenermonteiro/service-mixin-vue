@@ -24,6 +24,7 @@ npm run build
 
 ```sh
 npm run test
+```
 ## Entendendo a arquitetura service-mixin
 
 Para entender a arquitetura service-mixin-vue, é necessário ter em mente como funciona o padrão repository. 
@@ -276,4 +277,20 @@ export default {
     ...mapState("Post", ["posts"])
   }
 };
-``` 
+```
+## Autores
+
+- Iago Cavalcante - iago@gmail.com
+- Waldener Monteiro – jjrr019@gmail.com
+
+## Contribua
+
+1. Faça o _fork_ do projeto (<https://github.com/waldenermonteiro/service-mixin-vue.git/fork>)
+2. Crie uma _branch_ para sua modificação (`git checkout -b feature/fooBar`)
+3. Faça o _commit_ (`git commit -am 'Add some fooBar'`)
+4. _Push_ (`git push origin feature/fooBar`)
+5. Crie um novo _Pull Request_
+
+## Licença
+
+Distribuído sob a licença MIT.
