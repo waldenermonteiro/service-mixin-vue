@@ -1,10 +1,10 @@
 import { http } from '@/http-utils/Http'
-import { responseService } from './responseService'
+import { ResponseService } from './ResponseService'
 export default class Base {
   constructor (api) {
     this.api = api
     this.http = http
-    this.responseService = responseService
+    this.responseService = ResponseService
   }
   list = async () => {
     try {
